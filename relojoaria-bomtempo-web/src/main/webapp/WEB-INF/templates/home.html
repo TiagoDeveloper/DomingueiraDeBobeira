@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/layoutPadrao">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">title</title>
+</head>
+<body>
+
+	<th:block layout:fragment="body">
+		<h1>Hello world!!!</h1>
+		<br />
+		<br />
+		<br />
+		<form th:object="${objetoTest}" method="POST">
+			<div class="form-group col-xs-4">
+				<label for="data">Data:</label> 
+				<input type="text" class="form-control" id="datepicker" th:field="*{data}"/>
+			</div>
+			<button class="btn btn-default" type="submit">Enviar</button>
+		</form>
+		<br />
+	</th:block>
+	<script type="text/javascript" layout:fragment="scripts" th:inline="javascript">
+		$(document).ready(function(){
+			 $( "#datepicker" ).datepicker({currentText: "Now"});
+// 			$('#datepicker').mask("00/00/0000");
+
+		});
+	</script>
+</body>
+</html>

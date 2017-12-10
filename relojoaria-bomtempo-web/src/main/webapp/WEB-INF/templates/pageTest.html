@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Page teste</title>
+	<link th:href="@{/static/css/bootstrap.min.css}" rel="stylesheet"/>
+	<link th:href="@{/static/css/jquery-ui.min.css}" rel="stylesheet"/>
+<!-- 	<link th:href="@{/static/css/jquery-ui.theme.min.css}" rel="stylesheet"/> -->
+</head>
+<body>
+	<div class="container">
+		<br/>
+		<br/>
+		<br/>
+		<form th:object="${objetoComData}" method="POST">
+		<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
+			<th:block th:each="erro : ${#fields.detailedErrors()}">
+				<div>
+					<i class="fa  fa-exclamation-circle"></i> 
+					<span th:text="${erro.message}">Já existe um produto com o nome informado.</span>
+				</div>
+			</th:block>
+		</div>
+			<div>
+				<label for="nome">Nome:</label> 
+				<input type="text" id="nome"  th:field="*{nome}" placeholder="nome"/>
+<!-- 				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Name Error</span> -->
+			</div>
+			<div>
+				<label for="datepicker">Data:</label> 
+				<input type="date" th:field="*{data}" placeholder="data"/>
+<!-- 				<span th:if="${#fields.hasErrors('data')}" th:errors="*{data}">data Error</span> -->
+			</div>
+			<button class="btn btn-default" type="submit">Enviar</button> 
+		</form>
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+	</div>
+	
+	<script th:src="@{/static/js/jquery-3.0.0.js}"></script>
+	<script th:src="@{/static/js/bootstrap.min.js}"></script>
+	 <script th:src="@{/static/js/jquery-ui.min.js}"></script>
+	 <script type="text/javascript">
+	 $(document).ready(function(){
+	 	$('#datepicker').datepicker({
+	 		dateFormat: 'dd/mm/yy'
+	 	});
+	 });
+	 
+	 </script>
+</body>
+</html>

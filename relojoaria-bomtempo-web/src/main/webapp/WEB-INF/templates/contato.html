@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout/layoutPadrao">
+<head>
+<meta charset="UTF-8"/>
+<title>Contato</title>
+</head>
+<body>
+
+	<th:block layout:fragment="body">
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		
+		<div id="content"> 
+		</div>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<button id="fragment">Fragment</button>
+		
+		<form th:action="@{/request}" method="get">
+			<input type="text" name="nome" />
+			<input type="date" name="data" />
+			<button class="btn btn-default" type="submit">Envia data</button>
+		</form>
+		<br/>
+		<br/>
+	</th:block>
+
+	<script type="text/javascript" layout:fragment="scripts" th:inline="javascript">
+	/*<![CDATA[*/
+		$(document).ready(function(){
+			
+			var teste = true;
+			var data;
+// 			$('#fragment').click(function(){
+// 				if(teste){
+// 					$('#content').load('/relojoaria-bomtempo/form-fragment');
+// 					teste = !teste;
+// 				}else{
+// 					$('#content').load('/relojoaria-bomtempo/contato',{data:data});
+// 					teste = !teste;
+// 				}
+// 			});
+			$('#fragment').click(function(){
+// 				$.ajax({
+// 					url: '/relojoaria-bomtempo/form-fragment',
+// 					success: function(result){
+// 						$('#content').html(result);						
+// 					}
+// 				});
+					data = Math.floor(Math.random() * 11);
+				$('#content').load('/relojoaria-bomtempo/form-fragment',{data:data},function(result){
+					alert('Lord of Stars!!! '+result);
+				});
+			});
+			
+			
+		});
+		function deleta(id){
+			$('#content').load('/relojoaria-bomtempo/delete-fragment',{id:id},function(result){
+				alert('Lord of Stars!!! '+result);
+			});
+		}
+
+		/*]]>*/
+	</script>
+</body>
+</html>

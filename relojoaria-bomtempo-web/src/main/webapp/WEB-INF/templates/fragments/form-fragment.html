@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	
+	<th:block th:fragment="form"> 
+		<form action="" method="post" >
+			<th:block th:each="obj, i  : ${objetoTest}">
+				<input name="nome" th:value="${obj.data}" />
+				<button th:onclick="|deleta(${i.index})|" type="button">Enviar</button>
+			</th:block>
+		</form>
+	</th:block>
+</body>
+</html>
