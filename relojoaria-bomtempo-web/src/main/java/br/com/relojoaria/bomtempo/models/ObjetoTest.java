@@ -1,5 +1,10 @@
 package br.com.relojoaria.bomtempo.models;
 
+import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import br.com.relojoaria.bomtempo.annotations.Assistida;
@@ -7,13 +12,15 @@ import br.com.relojoaria.bomtempo.annotations.Assistida;
 @Component
 public class ObjetoTest {
 	
-	private String data;
+	@NotNull
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date dataHome;
 	
-	public String getData() {
-		return data;
+	public Date getDataHome() {
+		return dataHome;
 	}
 	@Assistida
-	public void setData(String data) {
-		this.data = data;
+	public void setDataHome(Date dataHome) {
+		this.dataHome = dataHome;
 	}
 }

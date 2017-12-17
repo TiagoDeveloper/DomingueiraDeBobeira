@@ -21,13 +21,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.relojoaria.bomtempo.models.ObjetoComData;
 import br.com.relojoaria.bomtempo.models.ObjetoTest;
-import br.com.relojoaria.bomtempo.validetor.DateValidator;
+import br.com.relojoaria.bomtempo.validator.DateValidator;
+import br.com.relojoaria.bomtempo.validator.DateValidator2;
 
 @Controller
+@RequestMapping("/principal")
 public class RelojoariaController {
 	
 	@Autowired
 	private DateValidator dateValidator;
+	
+	@Autowired
+	private DateValidator2 dateValidator2;
 	
 	@RequestMapping("/home")
 	public String home(Model model, ObjetoTest objetoTest){
@@ -37,7 +42,7 @@ public class RelojoariaController {
 	}
 	@RequestMapping(value="/home", method=RequestMethod.POST)
 	public String pegaDados(Model model, ObjetoTest objetoTest){
-		System.out.println("Meu objeto ===> "+objetoTest.getData());
+		System.out.println("Meu objeto ===> "+objetoTest.getDataHome());
 		return "home";
 	}
 	@RequestMapping(value="/contato", method=RequestMethod.GET)
@@ -51,7 +56,6 @@ public class RelojoariaController {
 	}
 	@RequestMapping(value="/contato", method=RequestMethod.POST)
 	public String contato(Model model,ObjetoTest objetoTest){
-		System.out.println("Teste: "+objetoTest.getData());
 		return "contato";
 	}
 	
@@ -88,7 +92,7 @@ public class RelojoariaController {
 	
 	@InitBinder
 	public void dataBind(WebDataBinder dataBinder){
-		dataBinder.addValidators(dateValidator);
+		dataBinder.addValidators(dateValidator2,dateValidator);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		dateFormat.setLenient(false);
 		dataBinder.registerCustomEditor(Date.class, "data", new CustomDateEditor(dateFormat, true));
